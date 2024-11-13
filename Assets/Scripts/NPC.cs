@@ -69,7 +69,7 @@ public class NPC : MonoBehaviour
         inventarioJugador.AgregarObjeto("piezaRecompensa");
         UnityEngine.Debug.Log("¡Has recibido una pieza de recompensa!");
 
-        // Aquí podrías hacer que el NPC cambie o se desactive, o mostrar algún mensaje
-        gameObject.SetActive(false); // Por ejemplo, desactivamos el NPC después de entregar la recompensa
+        // Aquí ya no desactivamos el NPC, lo dejamos activo
+        // gameObject.SetActive(false); // Comenta o elimina esta línea si no deseas desactivar el NPC
     }
 }
