@@ -4,36 +4,43 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    public Transform jugador; // Asigna el jugador en el inspector
-    public float distanciaMaxima = 5f; // Distancia máxima antes de aplicar zoom
+    public Transform jugador; // Asigna el Transform del jugador en el Inspector
+    public float distanciaMaxima = 5f; // Distancia máxima en X antes de ajustar el zoom
     public float zoomSuavizado = 0.1f; // Suavizado para el zoom
-    public Vector3 offset = new Vector3(0, 5, -10); // Ajuste en el eje Y y Z para la posición lateral
+    public float zoomMinimo = 60f; // FOV mínimo (alejado) cuando el jugador está lejos
+    public float zoomMaximo = 70f; // FOV máximo (acercado) cuando el jugador está cerca
     private Camera camara;
+    private Vector3 offsetInicial; // Offset inicial entre la cámara y el jugador en el eje Z
 
     void Start()
     {
         camara = GetComponent<Camera>();
+        offsetInicial = transform.position - jugador.position; // Calcula la diferencia inicial entre el jugador y la cámara
     }
 
     void LateUpdate()
     {
-        // Actualiza solo la posición X de la cámara
-        Vector3 nuevaPosicion = new Vector3(jugador.position.x, transform.position.y, transform.position.z);
-        transform.position = nuevaPosicion;
+        // Mantén la posición de la cámara centrada en el jugador en el eje Z
+        transform.position = new Vector3(transform.position.x, transform.position.y, jugador.position.z + offsetInicial.z);
 
-        // Calcula la distancia entre la cámara y el jugador en el eje horizontal
-        float distanciaJugador = Mathf.Abs(jugador.position.x - transform.position.x);
+        // Calcula la distancia en el eje X entre la cámara y el jugador
+        float distanciaEnX = Mathf.Abs(jugador.position.x - transform.position.x);
 
-        // Ajusta el tamaño del zoom si el jugador se aleja del rango
-        if (distanciaJugador > distanciaMaxima)
+        // Ajusta el FOV (zoom) en función de la distancia en X, con un suavizado
+        float zoomObjetivo;
+        if (distanciaEnX > distanciaMaxima)
         {
-            float zoomObjetivo = Mathf.Lerp(camara.orthographicSize, 7f, zoomSuavizado); // Ajusta 7f según la cantidad de zoom deseado
-            camara.orthographicSize = Mathf.Clamp(zoomObjetivo, 5f, 10f); // Limita el zoom entre un mínimo y un máximo
+            // Cuando el jugador está lejos en X, usa el zoom mínimo (alejado)
+            zoomObjetivo = zoomMinimo;
         }
         else
         {
-            // Retorna al tamaño original si el jugador está en el rango permitido
-            camara.orthographicSize = Mathf.Lerp(camara.orthographicSize, 5f, zoomSuavizado); // 5f es el tamaño normal de la cámara
+            // Cuando el jugador está cerca en X, usa el zoom máximo (acercado)
+            zoomObjetivo = Mathf.Lerp(zoomMaximo, zoomMinimo, distanciaEnX / distanciaMaxima);
         }
+
+        // Aplica el FOV suavizado
+        camara.fieldOfView = Mathf.Lerp(camara.fieldOfView, zoomObjetivo, zoomSuavizado);
     }
 }
+
