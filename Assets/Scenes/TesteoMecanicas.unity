@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  jumpForce: 5
   cameraTransform: {fileID: 963194228}
 --- !u!65 &65859458
 BoxCollider:
@@ -2005,9 +2006,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8633474279373035782, guid: 78d0f531e4d51154387cffe36d54abf6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 194.16759
+      objectReference: {fileID: 0}
+    - target: {fileID: -8633474279373035782, guid: 78d0f531e4d51154387cffe36d54abf6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 145.18
+      objectReference: {fileID: 0}
+    - target: {fileID: -8633474279373035782, guid: 78d0f531e4d51154387cffe36d54abf6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: -8633474279373035782, guid: 78d0f531e4d51154387cffe36d54abf6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 32.362
+      objectReference: {fileID: 0}
+    - target: {fileID: -4906838889796845047, guid: 78d0f531e4d51154387cffe36d54abf6, type: 3}
+      propertyPath: m_TagString
+      value: Suelo
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 78d0f531e4d51154387cffe36d54abf6, type: 3}
       propertyPath: m_Name
       value: Terraza
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 78d0f531e4d51154387cffe36d54abf6, type: 3}
+      propertyPath: m_TagString
+      value: Suelo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2079,7 +2104,7 @@ GameObject:
   - component: {fileID: 893532889}
   m_Layer: 0
   m_Name: Cube (10)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2093,7 +2118,7 @@ Transform:
   m_GameObject: {fileID: 893532887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.35, y: 3.2, z: -3.03}
+  m_LocalPosition: {x: 14.35, y: 3.54, z: -3.03}
   m_LocalScale: {x: 0.9091654, y: 8.995669, z: 11.326132}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2256,13 +2281,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.016780108, y: -0.7069077, z: 0.01678011, w: 0.7069077}
-  m_LocalPosition: {x: 19.72172, y: 2.673345, z: -1.2653518}
+  m_LocalRotation: {x: 0.051401433, y: -0.7052361, z: 0.051401444, w: 0.7052361}
+  m_LocalPosition: {x: 16.66, y: 3.79, z: -1.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 2.72, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.337, y: -90, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2547,7 +2572,7 @@ GameObject:
   - component: {fileID: 1053519094}
   m_Layer: 0
   m_Name: Cube (11)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2561,7 +2586,7 @@ Transform:
   m_GameObject: {fileID: 1053519092}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.35, y: 3.2, z: -22.68}
+  m_LocalPosition: {x: 14.35, y: 4.51, z: -14.22}
   m_LocalScale: {x: 0.9091654, y: 8.995669, z: 11.326132}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4112,6 +4137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  jumpForce: 7
   cameraTransform: {fileID: 0}
 --- !u!136 &1712538318
 CapsuleCollider:
@@ -4215,7 +4241,7 @@ GameObject:
   - component: {fileID: 1766435307}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,9 +4,13 @@ using UnityEngine;
 public class Movimiento : MonoBehaviour
 {
     public float moveSpeed = 5f; // Velocidad de movimiento
+    public float jumpForce = 7f; // Fuerza de salto
     public Transform cameraTransform; // Referencia a la cámara
     private Rigidbody rb;
     private Vector3 moveDirection;
+
+    // Variable para saber si estamos tocando el suelo
+    private bool isGrounded = false;
 
     void Start()
     {
@@ -33,6 +37,13 @@ public class Movimiento : MonoBehaviour
         // Dirección de movimiento: `W` mueve hacia el fondo (alejándose de la cámara)
         // y `S` mueve hacia la cámara (acercándose a ella)
         moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
+
+        // Comprobación para salto: Si estamos en el suelo y se presiona la tecla espacio
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            // Realizar el salto aplicando una fuerza hacia arriba
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     void FixedUpdate()
@@ -69,6 +80,24 @@ public class Movimiento : MonoBehaviour
                     rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation * Quaternion.Euler(0, 90, 0), 0.15f);
                 }
             }
+        }
+    }
+
+    // Comprobación de colisión para detectar si estamos tocando el suelo
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Suelo"))
+        {
+            isGrounded = true; // Estamos tocando el suelo
+        }
+    }
+
+    // Comprobación de colisión para salir del suelo
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Suelo"))
+        {
+            isGrounded = false; // Dejamos de tocar el suelo
         }
     }
 }
