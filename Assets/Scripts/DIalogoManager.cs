@@ -1,16 +1,23 @@
 using UnityEngine;
-using UnityEngine.UI;  // Asegúrate de que esta importación esté presente
+using UnityEngine.UI;
 
 public class DialogoManager : MonoBehaviour
 {
-    public Text dialogoTexto;  // Esto hace referencia a UnityEngine.UI.Text
-    public Image avatarImagen; // Esto hace referencia a UnityEngine.UI.Image
-    public Text nombrePersonaje; // Esto hace referencia a UnityEngine.UI.Text
-    public GameObject panelDialogo; // Panel de diálogo
+    public Text dialogoTexto;
+    public Image avatarImagen;
+    public Text nombrePersonaje;
+    public GameObject panelDialogo;
+
     private bool dialogoActivo = false;
-    private string[] lineasDeDialogo; // Líneas de diálogo
-    private string[] nombresPersonajes; // Nombres de los personajes
+    private bool dialogoCompletado = false; // Nuevo estado
+    private string[] lineasDeDialogo;
+    private string[] nombresPersonajes;
     private int indiceActual = 0;
+
+    public bool DialogoCompletado
+    {
+        get { return dialogoCompletado; }
+    }
 
     void Update()
     {
@@ -20,18 +27,17 @@ public class DialogoManager : MonoBehaviour
         }
     }
 
-    // Método para iniciar el diálogo, llamado desde el DialogoTrigger
     public void IniciarDialogo(string[] nuevasLineas, string[] nombres)
     {
         lineasDeDialogo = nuevasLineas;
         nombresPersonajes = nombres;
         indiceActual = 0;
         dialogoActivo = true;
+        dialogoCompletado = false; // Reiniciar estado
         panelDialogo.SetActive(true);
         MostrarSiguienteLinea();
     }
 
-    // Muestra la siguiente línea del diálogo
     public void MostrarSiguienteLinea()
     {
         if (indiceActual < lineasDeDialogo.Length)
@@ -46,10 +52,10 @@ public class DialogoManager : MonoBehaviour
         }
     }
 
-    // Termina el diálogo y oculta el panel
     public void TerminarDialogo()
     {
         dialogoActivo = false;
+        dialogoCompletado = true; // Marcar como completado
         panelDialogo.SetActive(false);
     }
 }
