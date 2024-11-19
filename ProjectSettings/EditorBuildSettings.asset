@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Playable Scenes/Main Menu.unity
+    guid: 0a004613f4f7fee4d95a6afa9cb7d273
+  - enabled: 1
+    path: Assets/Scenes/TesteoMecanicas.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Playable Scenes/Settings.unity
+    guid: 99063fbbc7f7ae04d838abd4479297f1
+  - enabled: 1
+    path: Assets/Playable Scenes/Credits.unity
+    guid: ab1c0712297db1848b76d849e472c41d
   m_configObjects: {}
