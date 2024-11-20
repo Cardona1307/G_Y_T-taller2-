@@ -5,6 +5,13 @@ public class GameManager : MonoBehaviour
     public GameObject menuPausaCanvas; // Referencia al Canvas del menú de pausa
     private bool juegoEnPausa = false; // Estado del juego
 
+    public bool isInPuzzle = false;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor
+    }
+
     void Update()
     {
         // Detecta si se presiona la tecla ESC
@@ -32,10 +39,26 @@ public class GameManager : MonoBehaviour
 
     public void ReanudarJuego()
     {
-        juegoEnPausa = false;
-        Time.timeScale = 1f; // Restaura el tiempo
-        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor
-        Cursor.visible = false; // Oculta el cursor
-        menuPausaCanvas.SetActive(false); // Desactiva el Canvas de pausa
+        if (isInPuzzle)
+        {
+            juegoEnPausa = false;
+            Time.timeScale = 1f; // Restaura el tiempo
+            Cursor.lockState = CursorLockMode.None; // Bloquea el cursor
+            Cursor.visible = false; // Oculta el cursor
+            menuPausaCanvas.SetActive(false); // Desactiva el Canvas de pausa
+        }
+        else
+        {
+            juegoEnPausa = false;
+            Time.timeScale = 1f; // Restaura el tiempo
+            Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor
+            Cursor.visible = false; // Oculta el cursor
+            menuPausaCanvas.SetActive(false); // Desactiva el Canvas de pausa
+        }
+
+
+
+        
     }
 }
+

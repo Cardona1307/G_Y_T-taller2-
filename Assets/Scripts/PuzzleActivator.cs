@@ -8,6 +8,9 @@ public class PuzzleActivator : MonoBehaviour
 
     private bool jugadorCerca = false; // Si el jugador está cerca del objeto activador
 
+    [SerializeField]
+    private GameManager gameManager;
+
     void Update()
     {
         // Comprobamos si el jugador está dentro del rango de activación
@@ -40,6 +43,7 @@ public class PuzzleActivator : MonoBehaviour
         // Activamos el Canvas del minijuego y pausamos el juego
         if (canvasMinijuego != null)
         {
+            gameManager.isInPuzzle = true;
             canvasMinijuego.SetActive(true);  // Mostrar el Canvas del minijuego
             Time.timeScale = 0f;  // Pausar el juego para jugar el minijuego
 
