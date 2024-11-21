@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class TP_point : MonoBehaviour
 {
-    public Vector3 posicionDestino; // Posición a la que teletransportará
-    private TP_manager gestor; // Cambiado de GestorTeletransportes a TP_manager
+    public Vector3 posicionDestino;
+    private TP_manager gestor; 
 
-    private bool isPlayerinRange; //Registra si el jugador está en el collider
+    private bool isPlayerinRange; 
 
     private void Start()
     {
-        gestor = FindObjectOfType<TP_manager>(); // Encuentra el gestor en la escena
+        gestor = FindObjectOfType<TP_manager>(); 
         isPlayerinRange = false;
     }
 
