@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);  // No destruir al cambiar de escena
+            PlayMusic(3);
         }
         else
         {
