@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PuzzleTrigger
   - Suelo
+  - PuzzleButton
   layers:
   - Default
   - TransparentFX
