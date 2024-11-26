@@ -21,7 +21,7 @@ public class DialogoManager : MonoBehaviour
 
     void Update()
     {
-        if (dialogoActivo && Input.GetKeyDown(KeyCode.E))
+        if (dialogoActivo && Input.GetKeyDown(KeyCode.F))
         {
             MostrarSiguienteLinea();
         }

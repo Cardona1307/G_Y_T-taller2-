@@ -12,11 +12,9 @@ public class TP_point : MonoBehaviour
         gestor = FindObjectOfType<TP_manager>(); 
         isPlayerinRange = false;
     }
-
-    private void Update()
+    public void TeleportTo()
     {
-        if (isPlayerinRange && Input.GetKeyDown(KeyCode.E))
-            gestor.Teletransportar(posicionDestino);
+        gestor.Teletransportar(posicionDestino);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,18 +10,25 @@ public class Movimiento : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveDirection;
 
+    [Header("Interaction")] public KeyCode interactionKey = KeyCode.E;
+    
     private bool isGrounded = false;
 
     // Referencia al Animator
-    public Animator animator;
+    private Animator _animator;
 
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        // Verificar que el Animator está asignado
-        if (animator == null)
+        // Verificar que el Animator estï¿½ asignado
+        if (_animator != null)
         {
             UnityEngine.Debug.Log("Animator no asignado en el Inspector.");
         }
@@ -44,19 +52,32 @@ public class Movimiento : MonoBehaviour
         moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
 
         // Calcular la magnitud del movimiento para el Animator
-        float speed = moveDirection.magnitude; // Magnitud de la dirección de movimiento
+        float speed = moveDirection.magnitude; // Magnitud de la direcciï¿½n de movimiento
 
-        // Actualizar el parámetro "Speed" en el Animator
-        if (animator != null)
-        {
-            animator.SetFloat("Speed", speed);
-        }
+        // Actualizar el parï¿½metro "Speed" en el Animator
+        
+        _animator.SetFloat("Speed", speed);
+        
 
         // Salto
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
+            
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+        
+        ActionAnimation();
+    }
+
+    void ActionAnimation()
+    {
+        if(Input.GetKeyDown(interactionKey))
+            _animator.SetBool("Action", true);
+        if (Input.GetKeyUp(interactionKey))
+        {
+            _animator.SetBool("Action", false);
+        }
+        
     }
 
     void FixedUpdate()
@@ -66,25 +87,8 @@ public class Movimiento : MonoBehaviour
             // Mover el jugador
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
 
-            // Rotar dependiendo de la dirección en el eje X o Z
-            if (moveDirection.x != 0)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-                rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation * Quaternion.Euler(0, 90, 0), 0.15f);
-            }
-            else if (moveDirection.z != 0)
-            {
-                if (moveDirection.z > 0)
-                {
-                    Quaternion targetRotation = Quaternion.LookRotation(-cameraTransform.forward, Vector3.up);
-                    rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation * Quaternion.Euler(0, 90, 0), 0.15f);
-                }
-                else if (moveDirection.z < 0)
-                {
-                    Quaternion targetRotation = Quaternion.LookRotation(cameraTransform.forward, Vector3.up);
-                    rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation * Quaternion.Euler(0, 90, 0), 0.15f);
-                }
-            }
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation * Quaternion.Euler(0, 0, 0), 0.15f);
         }
     }
 
@@ -93,6 +97,29 @@ public class Movimiento : MonoBehaviour
         if (collision.gameObject.CompareTag("Suelo"))
         {
             isGrounded = true;
+        }
+    }
+
+    //Actions
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("PuzzleTrigger"))
+        {
+            PuzzleActivator puzzleActivator = other.GetComponent<PuzzleActivator>();
+            
+            if (Input.GetKeyDown(interactionKey))
+            {
+                puzzleActivator.ActivarMinijuego();
+            }
+        }else if (other.CompareTag("Teleport"))
+        {
+            TP_point teleportActivator = other.GetComponent<TP_point>();
+            
+            if (Input.GetKeyDown(interactionKey))
+            {
+                teleportActivator.TeleportTo();
+            }
         }
     }
 
