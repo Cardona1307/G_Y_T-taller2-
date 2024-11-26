@@ -11,17 +11,28 @@ public class Movimiento : MonoBehaviour
 
     private bool isGrounded = false;
 
+    // Referencia al Animator
+    public Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        // Verificar que el Animator está asignado
+        if (animator == null)
+        {
+            UnityEngine.Debug.Log("Animator no asignado en el Inspector.");
+        }
     }
 
     void Update()
     {
+        // Capturar el input
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+        // Calcular direcciones
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
 
@@ -32,6 +43,16 @@ public class Movimiento : MonoBehaviour
 
         moveDirection = (forward * verticalInput + right * horizontalInput).normalized;
 
+        // Calcular la magnitud del movimiento para el Animator
+        float speed = moveDirection.magnitude; // Magnitud de la dirección de movimiento
+
+        // Actualizar el parámetro "Speed" en el Animator
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", speed);
+        }
+
+        // Salto
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -42,8 +63,10 @@ public class Movimiento : MonoBehaviour
     {
         if (moveDirection != Vector3.zero)
         {
+            // Mover el jugador
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
 
+            // Rotar dependiendo de la dirección en el eje X o Z
             if (moveDirection.x != 0)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);

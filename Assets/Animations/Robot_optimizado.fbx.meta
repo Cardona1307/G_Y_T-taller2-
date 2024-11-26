@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 3885254edbbe42543bb366203e4efdcc
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Robot_optimizado(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Light
+      parentName: Robot_optimizado(Clone)
+      position: {x: -4.0762453, y: 5.903862, z: -1.005454}
+      rotation: {x: -0.36502606, y: 0.14918295, z: -0.8758987, w: -0.27803218}
+      scale: {x: 100.00001, y: 100, z: 100}
+    - name: Camera
+      parentName: Robot_optimizado(Clone)
+      position: {x: -1.00212, y: 0.26483616, z: -0.19228548}
+      rotation: {x: 0.042085223, y: 0.6387811, z: -0.035023175, w: 0.76743793}
+      scale: {x: 99.99999, y: 100, z: 100}
+    - name: antenas_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0.016199112, y: 0.28654823, z: 0.0002143234}
+      rotation: {x: -0.67086864, y: -0.22346237, z: 0.22346231, w: 0.6708685}
+      scale: {x: 99.999985, y: 100, z: 99.999985}
+    - name: brazos_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.16352369, z: 0}
+      rotation: {x: 0.5988317, y: 0.59883195, z: 0.37603244, w: -0.37603256}
+      scale: {x: 100, y: 100, z: 100}
+    - name: brazos_caparazon_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.12619899, z: 0}
+      rotation: {x: -0.5052843, y: 0, z: -0, w: 0.86295295}
+      scale: {x: 95.96648, y: 95.96648, z: 95.96648}
+    - name: brazos_rueda_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.17457277, z: 0}
+      rotation: {x: 0.039281353, y: 0, z: -0, w: 0.9992282}
+      scale: {x: 100, y: 100.00001, z: 100.00001}
+    - name: cadera_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.112339884, z: 0}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: cara_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0.022144448, y: 0.23017511, z: 0}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: casco_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: 0.012669559, y: 0.26423073, z: 0.0015850924}
+      rotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
+      scale: {x: 100, y: 100, z: 100}
+    - name: cuello_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.18853685, z: 0}
+      rotation: {x: -0.70192283, y: -0.08546591, z: 0.0854659, w: 0.7019227}
+      scale: {x: 99.99999, y: 100, z: 99.99999}
+    - name: manos_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.08087308, z: 0}
+      rotation: {x: 0.22050828, y: -0.18199463, z: 0.11580898, w: 0.951232}
+      scale: {x: 99.99999, y: 99.99999, z: 100}
+    - name: orejas_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.2322046, z: 0}
+      rotation: {x: -0.056935605, y: 0, z: -0, w: 0.99837786}
+      scale: {x: 100, y: 99.99999, z: 99.99999}
+    - name: pecho_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.1667506, z: 0}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: piernas_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.08896522, z: 0}
+      rotation: {x: 0.6700631, y: 0.6700632, z: 0.22586581, w: -0.22586589}
+      scale: {x: 99.99999, y: 100, z: 99.99999}
+    - name: piernas_rueda_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.10835928, z: 0}
+      rotation: {x: -0.32177007, y: 0, z: -0, w: 0.9468178}
+      scale: {x: 100, y: 99.99999, z: 99.99999}
+    - name: piernas_soporte_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.041506212, z: 0}
+      rotation: {x: -0.7064697, y: -0.030009096, z: 0.030009093, w: 0.7064697}
+      scale: {x: 99.99998, y: 100, z: 99.99998}
+    - name: pies_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0.004267695, y: 0.004963368, z: 0}
+      rotation: {x: 0.06193155, y: -0.73132306, z: -0.037349544, w: 0.6781859}
+      scale: {x: 99.99999, y: 99.99998, z: 100.00001}
+    - name: propulsor_cabeza_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: 0.033771515, y: 0.23276965, z: 0}
+      rotation: {x: 0.49972138, y: 0.5002786, z: -0.5002785, w: -0.49972126}
+      scale: {x: 100.00001, y: 100, z: 100.00001}
+    - name: propulsor_espalda_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: 0.028657913, y: 0.16554378, z: 0}
+      rotation: {x: 0.49972138, y: 0.5002786, z: -0.5002785, w: -0.49972126}
+      scale: {x: 100.00001, y: 100, z: 100.00001}
+    - name: tronco_low
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0.14353065, z: 0}
+      rotation: {x: -0.7071069, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Cube
+      parentName: Robot_optimizado(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000030908623, y: 0.7071068, z: 0.7071067, w: 0.000000030908616}
+      scale: {x: -32.496292, y: -32.496292, z: -0.6779371}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
