@@ -6,9 +6,12 @@ public class Movimiento : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
+    private float stepTimer = 0f;
+    public float stepInterval = 0.5f; // Intervalo entre pasos
     public Transform cameraTransform;
     private Rigidbody rb;
     private Vector3 moveDirection;
+    private AudioManager audioManager;
 
     [Header("Interaction")] public KeyCode interactionKey = KeyCode.E;
     
@@ -26,6 +29,8 @@ public class Movimiento : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        audioManager = AudioManager.instance; // Obtiene la instancia singleton del AudioManager
 
         // Verificar que el Animator est� asignado
         if (_animator != null)
@@ -89,7 +94,21 @@ public class Movimiento : MonoBehaviour
 
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
             rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation * Quaternion.Euler(0, 0, 0), 0.15f);
+            // Temporizador para sonidos de pasos
+            stepTimer -= Time.fixedDeltaTime;
+
+            if (stepTimer <= 0f)
+            {
+                // Reproducir sonido de pasos desde el AudioManager
+                audioManager.PlayRobotStepSound();
+                stepTimer = stepInterval; // Reinicia el temporizador
+            }
         }
+        else
+        {
+            stepTimer = 0f; // Resetea el temporizador si no se está moviendo
+        }
+
     }
 
     void OnCollisionEnter(Collision collision)

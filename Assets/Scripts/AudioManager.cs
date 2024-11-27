@@ -54,4 +54,14 @@ public class AudioManager : MonoBehaviour
     {
         effectsSource.Stop();
     }
+    public void PlayRobotStepSound()
+    {
+        if (effectsClips.Length > 0)
+        {
+            int randomIndex = Random.Range(0, effectsClips.Length); // Selecciona aleatorio
+            effectsSource.PlayOneShot(effectsClips[randomIndex]);
+        }
+    }
+
+
 }

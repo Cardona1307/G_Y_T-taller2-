@@ -3806,8 +3806,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 622f44c892eec0c4c8ded40a7b61260a, type: 3}
   - {fileID: 8300000, guid: 8e0cd6ed5c107b648878aa7b7f47572c, type: 3}
   effectsClips:
-  - {fileID: 8300000, guid: a7387a87046a8eb4990b8279581e929c, type: 3}
-  - {fileID: 8300000, guid: 8c64e79f7bc1c3549b22408334319938, type: 3}
+  - {fileID: 8300000, guid: 0b6fcc49833721747ad868d615976a28, type: 3}
+  - {fileID: 8300000, guid: 9f6f76df0331dba46a5f6335ac54c788, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -7372,6 +7372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 7
+  stepInterval: 0.5
   cameraTransform: {fileID: 963194228}
   interactionKey: 101
 --- !u!54 &4072856775014188731
