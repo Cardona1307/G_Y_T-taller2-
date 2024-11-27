@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour
         {
             if (juegoEnPausa)
             {
+                AudioManager.instance.PlaySoundEffect(2);
                 ReanudarJuego();
             }
             else
             {
+                AudioManager.instance.PlaySoundEffect(2);
                 PausarJuego();
             }
         }

@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip[] musicClips;      // Clips de música
     public AudioClip[] effectsClips;    // Clips de efectos de sonido
+    private bool toggleStep = false;
 
     void Awake()
     {
@@ -56,10 +57,18 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayRobotStepSound()
     {
-        if (effectsClips.Length > 0)
+        if (effectsClips.Length > 1)  // Asegurarse de que hay al menos dos sonidos
         {
-            int randomIndex = Random.Range(0, effectsClips.Length); // Selecciona aleatorio
-            effectsSource.PlayOneShot(effectsClips[randomIndex]);
+            if (toggleStep)
+            {
+                effectsSource.PlayOneShot(effectsClips[0]);  // Reproducir sonido en el índice 0
+            }
+            else
+            {
+                effectsSource.PlayOneShot(effectsClips[1]);  // Reproducir sonido en el índice 1
+            }
+
+            toggleStep = !toggleStep;  // Alternar entre verdadero y falso
         }
     }
 

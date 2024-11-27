@@ -3806,9 +3806,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 622f44c892eec0c4c8ded40a7b61260a, type: 3}
   - {fileID: 8300000, guid: 8e0cd6ed5c107b648878aa7b7f47572c, type: 3}
   effectsClips:
-  - {fileID: 8300000, guid: 0b6fcc49833721747ad868d615976a28, type: 3}
-  - {fileID: 8300000, guid: 9f6f76df0331dba46a5f6335ac54c788, type: 3}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 722bc416a3ca19540a1c0f157238a037, type: 3}
+  - {fileID: 8300000, guid: 5dd7f55e16df1c0429d237f739e34f40, type: 3}
+  - {fileID: 8300000, guid: 2ddd0c5e5e249ca4394f10da1bda84a3, type: 3}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!4 &1480906002
