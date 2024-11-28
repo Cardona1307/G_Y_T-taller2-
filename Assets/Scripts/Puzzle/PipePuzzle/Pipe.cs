@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace Puzzle.PipePuzzle
 {
@@ -13,6 +14,7 @@ namespace Puzzle.PipePuzzle
             TPipe,
             LPipe,
             SPipe,
+            GPipe,
         }
 
         [Serializable]
@@ -23,25 +25,31 @@ namespace Puzzle.PipePuzzle
             D180 = 2,
             D270 = 3,
         }
-        
-        public static Dictionary<PipeType, int[]> pipes = new ()
+
+        private static readonly Dictionary<PipeType, int[]> Pipes = new ()
         {
-            { PipeType.TPipe , new int[]{0, 1, 1, 1}},
-            { PipeType.LPipe , new int[]{0, 0, 1, 1}},
-            { PipeType.SPipe , new int[]{0, 1, 0, 1}}
+            { PipeType.TPipe , new[]{0, 1, 1, 1}},
+            { PipeType.LPipe , new[]{0, 0, 1, 1}},
+            { PipeType.SPipe , new[]{0, 1, 0, 1}},
+            { PipeType.GPipe , new[]{1, 0, 1, 0}},
         };
 
         [Header("Pipe Settings")]
-        public PipeType pipeType;
-        public Degrees pipeDegrees;
-        public int[] pipeVector;
-        public int[] pipeActivationVector;
-        public bool isActive;
+        [SerializeField] private PipeType pipeType;
+        [SerializeField] private Degrees pipeDegrees;
+        [SerializeField] private int[] pipeCurrentExit;
+        [SerializeField] private int[] pipeLastExit;
+        [SerializeField] private Coordinate2D coordinates;
+        [SerializeField] private bool isActive;
+        
+        public bool State => isActive;
+        
+        public int[] PipeExit => pipeCurrentExit;
         
         [Header("UI")]
-        public Image pipeImage;
-        public Button pipeButton;
-
+        [SerializeField] private Image pipeImage;
+        [SerializeField] private Button pipeButton;
+        
         private void OnEnable()
         {
             pipeButton.onClick.AddListener(OnClick);
@@ -55,21 +63,34 @@ namespace Puzzle.PipePuzzle
         private void OnClick()
         {
             pipeDegrees = (Degrees) ( (int) (pipeDegrees + 1) % 4 );
-            pipeVector = VectorFunctions.RotateVector(pipes[pipeType], (int) pipeDegrees * 90);
+            pipeLastExit = pipeCurrentExit;
+            pipeCurrentExit = VectorUtilities.RotateVector(Pipes[pipeType], (int) pipeDegrees * 90);
             pipeImage.rectTransform.Rotate(0, 0, -90);
-            isActive = VectorFunctions.IsVectorActive(pipeVector, pipeActivationVector);
+            
+            
+            PipeManager.Instance.ChangePipes(coordinates, pipeCurrentExit, isActive);
         }
 
-        public void Initialize(PipeType type, Degrees degrees, Sprite sprite)
+        public void Initialize(Coordinate2D coord, PipeType type, Degrees degrees, Sprite sprite)
         {
+            coordinates = coord;
             pipeType = type;
             pipeDegrees = degrees;
             
-            pipeVector = VectorFunctions.RotateVector(pipes[pipeType], (int) pipeDegrees * 90);
-            pipeActivationVector = new []{0, 0, 0, 0};
+            pipeCurrentExit = pipeLastExit = VectorUtilities.RotateVector(Pipes[pipeType], (int) pipeDegrees * 90);
             isActive = false;
 
             pipeImage.sprite = sprite;
+        }
+        
+        public void ChangeState(bool active)
+        {
+            isActive = active;
+            
+            pipeImage.color = isActive ? Color.green : Color.white;
+            int[] pipeExit = active ? pipeCurrentExit : pipeLastExit;
+            
+            PipeManager.Instance.ChangePipes(coordinates, pipeExit, active);
         }
         
     }
