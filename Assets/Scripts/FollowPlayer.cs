@@ -7,6 +7,7 @@ public class FollowPlayer : MonoBehaviour
     public float zoomCercano = 60f; // FOV máximo (cercano) cuando el jugador se aleja
     public float zoomLejano = 70f; // FOV mínimo (alejado) cuando el jugador está cerca del centro
     public float distanciaZoom = 10f; // Distancia en Z para ajustar el zoom
+    public float limiteX = 33.4021454f; // Límite máximo en el eje X para la cámara
 
     private Camera camara;
     private Vector3 offsetInicial; // Offset inicial entre la cámara y el jugador
@@ -19,8 +20,17 @@ public class FollowPlayer : MonoBehaviour
 
     void LateUpdate()
     {
-        // Mantén la cámara centrada en el jugador
-        transform.position = jugador.position + offsetInicial;
+        // Calcula la nueva posición basada en el jugador
+        Vector3 nuevaPosicion = jugador.position + offsetInicial;
+
+        // Limitar la posición en el eje X
+        if (nuevaPosicion.x > limiteX)
+        {
+            nuevaPosicion.x = limiteX; // No permitir que la cámara pase el límite en X
+        }
+
+        // Actualiza la posición de la cámara
+        transform.position = nuevaPosicion;
 
         // Ajusta el zoom en función de la posición del jugador en Z
         float distanciaEnZ = Mathf.Abs(jugador.position.z);
