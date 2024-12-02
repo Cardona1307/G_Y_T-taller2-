@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // Importa TextMeshPro
 
 public class DialogoManager : MonoBehaviour
 {
-    public Text dialogoTexto;
+    public TextMeshProUGUI dialogoTexto; // Cambiado a TextMeshProUGUI
     public Image avatarImagen;
-    public Text nombrePersonaje;
+    public TextMeshProUGUI nombrePersonaje; // Cambiado a TextMeshProUGUI
     public GameObject panelDialogo;
 
     private bool dialogoActivo = false;
