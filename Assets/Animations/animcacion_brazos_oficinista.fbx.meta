@@ -3,7 +3,27 @@ guid: 754c9eee1057f10418e5b81ef80b42c8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark scottish tartan Fabric
+    second: {fileID: 2100000, guid: 37610a611f8a491469d842e46a2ce285, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Painted rusted metal
+    second: {fileID: 2100000, guid: 65cb8feb65fa912499e2539ddcbe7945, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Procedural Hologram effect
+    second: {fileID: 2100000, guid: 9d0929a4682bed24582d293ab5da47a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Robot
+    second: {fileID: 2100000, guid: 24e3f05dac036fc4c90df8d1455c946e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -128,7 +148,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

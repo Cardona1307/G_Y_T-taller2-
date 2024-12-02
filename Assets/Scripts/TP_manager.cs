@@ -14,7 +14,7 @@ public class TP_manager : MonoBehaviour
             puntoOrigen = personaje.position; // Guarda el punto de origen
         }
 
-        // Mover personaje y cámara
+        // Mover personaje y cámara a la nueva posición de destino
         personaje.position = posicionDestino;
         camara.transform.position = posicionDestino; // Si la cámara sigue al personaje, podría omitirse
     }
