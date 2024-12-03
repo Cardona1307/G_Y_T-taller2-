@@ -5,6 +5,7 @@ public class DialogoTrigger : MonoBehaviour
     [TextArea(3, 10)]
     public string[] dialogoTexto;
     public string[] nombresDePersonajes;
+    public Sprite[] avatares; // Nuevo: Array de avatares para cada línea
     public DialogoManager dialogoManager;
 
     private bool jugadorEnRango;
@@ -17,7 +18,7 @@ public class DialogoTrigger : MonoBehaviour
             {
                 if (!dialogoManager.panelDialogo.activeSelf)
                 {
-                    dialogoManager.IniciarDialogo(dialogoTexto, nombresDePersonajes);
+                    dialogoManager.IniciarDialogo(dialogoTexto, nombresDePersonajes, avatares);
                 }
             }
             else
@@ -35,14 +36,13 @@ public class DialogoTrigger : MonoBehaviour
             jugadorEnRango = true;
             if (dialogoManager != null)
             {
-                dialogoManager.IniciarDialogo(dialogoTexto, nombresDePersonajes);
+                dialogoManager.IniciarDialogo(dialogoTexto, nombresDePersonajes, avatares);
             }
             else
             {
                 Debug.LogError("DialogoManager no está asignado en el Inspector.");
             }
             gameObject.SetActive(false);
-
         }
     }
 
