@@ -2,54 +2,119 @@ using UnityEngine;
 
 public class NPCDialogTrigger : MonoBehaviour
 {
-    [Header("Diálogo Principal")]
-    [TextArea(3, 10)]
-    public string[] dialogoTexto; // Texto del diálogo cuando la misión está completada
-    public string[] nombresDePersonajes; // Nombres de los personajes
-    public Sprite[] avatares; // Avatares de los personajes
+    [Header("Diálogos Generales")]
+    [TextArea(3, 10)] public string[] dialogoTexto; // Diálogos principales
+    public string[] nombresDePersonajes; // Nombres de los personajes en los diálogos
+    public Sprite[] avatares; // Avatares asociados a los diálogos
 
-    [Header("Diálogo Misión Incompleta")]
-    [TextArea(3, 10)]
-    public string[] dialogoMisionIncompleta; // Mensaje personalizado cuando la misión no está completada
+    [Header("Diálogos de Misión")]
+    [TextArea(3, 10)] public string[] dialogoMisionNoCompletada; // Mensajes para misión no completada
+    public string[] nombresMisionNoCompletada; // Nombres para misión no completada
+    public Sprite[] avataresMisionNoCompletada; // Avatares para misión no completada
 
-    [Header("Referencias")]
-    public DialogoManager dialogoManager; // Referencia al sistema de diálogos
-    public UIManager uiManager; // Referencia al sistema de UI para mostrar la tecla "E"
-    public MissionManager missionManager; // Referencia al sistema de misiones
+    [TextArea(3, 10)] public string[] dialogoMisionCompletada; // Mensajes para misión completada
+    public string[] nombresMisionCompletada; // Nombres para misión completada
+    public Sprite[] avataresMisionCompletada; // Avatares para misión completada
 
-    private bool jugadorEnRango;
+    [Header("Misión")]
+    public IMision mision; // Referencia a la misión de este NPC (asignada desde el Inspector)
+
+    [Header("UI")]
+    public UIManager uiManager; // Referencia al UI Manager
+
+    private bool jugadorEnRango = false; // Verifica si el jugador está cerca
+    private bool dialogoPrincipalMostrado = false; // Marca si el diálogo principal ya ha sido mostrado
 
     void Update()
     {
+        // Verificar si el jugador está en rango y presiona la tecla de interacción
         if (jugadorEnRango && Input.GetKeyDown(KeyCode.E))
         {
-            if (dialogoManager != null)
+            if (!dialogoPrincipalMostrado)
             {
-                if (missionManager != null)
-                {
-                    if (missionManager.MisionCompletada())
-                    {
-                        // Mostrar el diálogo principal al completar la misión
-                        dialogoManager.IniciarDialogo(dialogoTexto, nombresDePersonajes, avatares);
-                    }
-                    else
-                    {
-                        // Mostrar el mensaje de misión incompleta
-                        dialogoManager.IniciarDialogo(dialogoMisionIncompleta, nombresDePersonajes, avatares);
-                    }
-                }
-                else
-                {
-                    Debug.LogError("MissionManager no asignado en el Inspector.");
-                }
+                MostrarDialogoPrincipal();
+                dialogoPrincipalMostrado = true;
+                Debug.Log("¡Misión iniciada!");
+                ActivarMision();
             }
             else
             {
-                Debug.LogError("DialogoManager no asignado en el Inspector.");
+                MostrarDialogoMision();
             }
         }
     }
 
+    // Mostrar el diálogo principal del NPC
+    private void MostrarDialogoPrincipal()
+    {
+        DialogoManager dialogoManager = FindObjectOfType<DialogoManager>();
+        if (dialogoManager != null)
+        {
+            dialogoManager.IniciarDialogo(dialogoTexto, nombresDePersonajes, avatares);
+        }
+        else
+        {
+            Debug.LogError("No se encontró un DialogoManager en la escena.");
+        }
+    }
+
+    // Mostrar el diálogo de misión, dependiendo de si está completada o no
+    private void MostrarDialogoMision()
+    {
+        string[] dialogoActual;
+        string[] nombresActuales;
+        Sprite[] avataresActuales;
+
+        // Verificar si la misión está asignada y su estado
+        if (mision != null)
+        {
+            if (mision.EstaCompletada())
+            {
+                // Mostrar diálogo de misión completada
+                dialogoActual = dialogoMisionCompletada;
+                nombresActuales = nombresMisionCompletada;
+                avataresActuales = avataresMisionCompletada;
+            }
+            else
+            {
+                // Mostrar diálogo de misión no completada
+                dialogoActual = dialogoMisionNoCompletada;
+                nombresActuales = nombresMisionNoCompletada;
+                avataresActuales = avataresMisionNoCompletada;
+            }
+        }
+        else
+        {
+            // Mostrar los diálogos generales si no hay misión asignada
+            dialogoActual = dialogoTexto;
+            nombresActuales = nombresDePersonajes;
+            avataresActuales = avatares;
+        }
+
+        // Iniciar el diálogo con el DialogManager
+        DialogoManager dialogoManager = FindObjectOfType<DialogoManager>();
+        if (dialogoManager != null)
+        {
+            dialogoManager.IniciarDialogo(dialogoActual, nombresActuales, avataresActuales);
+        }
+        else
+        {
+            Debug.LogError("No se encontró un DialogoManager en la escena.");
+        }
+    }
+
+    // Activar la misión cuando el jugador interactúa por primera vez
+    private void ActivarMision()
+    {
+        if (mision != null)
+        {
+            Debug.Log("La misión ha sido activada.");
+            // Solo activamos la misión al interactuar, no la completamos de inmediato
+            // mision.CompletarMision(); // Esto se desactiva porque la misión debe completarse más tarde
+        }
+    }
+
+    // Detectar cuando el jugador entra en el rango del NPC
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -57,16 +122,12 @@ public class NPCDialogTrigger : MonoBehaviour
             jugadorEnRango = true;
             if (uiManager != null)
             {
-                // Mostrar la tecla "E" en la pantalla
-                uiManager.MostrarInteractKey(true);
-            }
-            else
-            {
-                Debug.LogError("UIManager no asignado en el Inspector.");
+                uiManager.MostrarInteractKey(true); // Mostrar la tecla de interacción
             }
         }
     }
 
+    // Detectar cuando el jugador sale del rango del NPC
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -74,8 +135,7 @@ public class NPCDialogTrigger : MonoBehaviour
             jugadorEnRango = false;
             if (uiManager != null)
             {
-                // Ocultar la tecla "E" de la pantalla
-                uiManager.MostrarInteractKey(false);
+                uiManager.MostrarInteractKey(false); // Ocultar la tecla de interacción
             }
         }
     }

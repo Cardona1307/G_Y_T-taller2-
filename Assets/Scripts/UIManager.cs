@@ -3,18 +3,17 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject interactImage; // Campo público para asignar el objeto de la "E"
+    public GameObject interactKey; // Asigna el ícono o imagen en el Inspector
 
-    // Método para mostrar/ocultar la imagen de interacción
-    public void MostrarInteraccion(bool mostrar)
+    public void MostrarInteractKey(bool mostrar)
     {
-        if (interactImage != null)
+        if (interactKey != null)
         {
-            interactImage.SetActive(mostrar);
+            interactKey.SetActive(mostrar); // Activa o desactiva la imagen según el parámetro
         }
         else
         {
-            Debug.LogError("El objeto Interact Image no está asignado en el UIManager.");
+            Debug.LogError("InteractKey no está asignado en el UIManager.");
         }
     }
 }

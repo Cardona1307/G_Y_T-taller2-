@@ -2,35 +2,33 @@ using UnityEngine;
 
 public class MissionManager : MonoBehaviour
 {
-    [Header("Misiones")]
-    public bool misionCompletada; // Estado de la misión, se puede cambiar desde el juego o desde otro sistema.
+    public IMision misionActiva; // Misión activa en el juego
 
-    // Aquí puedes agregar más misiones si es necesario en el futuro.
-    // public bool mision2Completada;
-
-    void Start()
-    {
-        // Inicializar el estado de la misión, puede ser desde un archivo, base de datos, o como sea necesario.
-        misionCompletada = false; // Inicializa a falso, por ejemplo.
-    }
-
-    // Método para verificar si la misión está completada
     public bool MisionCompletada()
     {
-        return misionCompletada;
+        return misionActiva != null && misionActiva.EstaCompletada();
     }
 
-    // Método para completar la misión, puede ser llamado desde otros scripts o eventos.
-    public void CompletarMision()
+    public void IniciarMision(IMision mision)
     {
-        misionCompletada = true;
-        Debug.Log("Misión completada!");
+        misionActiva = mision; // Asignamos la misión activa
+        mision.CompletarMision(); // Activamos la misión
+        Debug.Log("Misión iniciada: " + mision.ObtenerDescripcion());
     }
 
-    // Método para resetear la misión, en caso de que quieras reiniciarla en algún momento.
-    public void ResetearMision()
+    public void IntentarCompletarMision()
     {
-        misionCompletada = false;
-        Debug.Log("Misión reseteada.");
+        if (misionActiva != null && !misionActiva.EstaCompletada())
+        {
+            misionActiva.IntentarCompletarMision();
+            if (misionActiva.EstaCompletada())
+            {
+                Debug.Log("¡Misión completada!");
+            }
+        }
+        else
+        {
+            Debug.Log("No hay misión activa o la misión ya está completada.");
+        }
     }
 }

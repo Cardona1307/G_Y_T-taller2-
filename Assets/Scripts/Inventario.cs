@@ -9,7 +9,7 @@ public class Inventario : MonoBehaviour
     public void AgregarObjeto(string nombreObjeto)
     {
         objetos.Add(nombreObjeto);
-        UnityEngine.Debug.Log($"Objeto {nombreObjeto} agregado al inventario.");
+        Debug.Log($"Objeto {nombreObjeto} agregado al inventario.");
     }
 
     // Verifica si el jugador tiene un objeto específico en el inventario
@@ -22,6 +22,12 @@ public class Inventario : MonoBehaviour
     public void LimpiarInventario()
     {
         objetos.Clear();
-        UnityEngine.Debug.Log("Inventario limpiado.");
+        Debug.Log("Inventario limpiado.");
+    }
+
+    // Método para obtener todos los objetos actuales en el inventario (opcional)
+    public List<string> ObtenerObjetos()
+    {
+        return objetos;
     }
 }

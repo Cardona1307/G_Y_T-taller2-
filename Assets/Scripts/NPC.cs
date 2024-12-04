@@ -1,75 +1,66 @@
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class RecogerJuguetesMision : MonoBehaviour, IMision
 {
-    public string[] objetosRequeridos = new string[] { "Juguete1", "Juguete2", "Juguete3", "Juguete4", "Juguete5" }; // Los 5 juguetes requeridos
-    private bool enRango = false; // Verifica si el jugador está en rango para interactuar
-
+    public string[] objetosRequeridos = { "Juguete1", "Juguete2", "Juguete3", "Juguete4", "Juguete5" };
     private Inventario inventarioJugador;
+    private bool misionCompletada = false;
 
-    // Se ejecuta cuando el jugador entra en el área del trigger
+    public string ObtenerDescripcion()
+    {
+        return "Recoge todos los juguetes y entrégalos al NPC.";
+    }
+
+    public bool EstaCompletada()
+    {
+        return misionCompletada;
+    }
+
+    public void CompletarMision()
+    {
+        misionCompletada = true;
+        Debug.Log("¡Has completado la misión de recoger juguetes!");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            enRango = true;
             inventarioJugador = other.GetComponent<Inventario>();
         }
     }
 
-    // Se ejecuta cuando el jugador sale del área del trigger
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            enRango = false;
             inventarioJugador = null;
         }
     }
 
-    // Se ejecuta cada cuadro
-    private void Update()
+    public void IntentarCompletarMision()
     {
-        // Verifica si el jugador está en rango y presiona la tecla E para interactuar
-        if (enRango && Input.GetKeyDown(KeyCode.E))
+        if (inventarioJugador != null && TieneObjetosSuficientes())
         {
-            // Verifica si el jugador tiene los 5 objetos requeridos en el inventario
-            if (inventarioJugador != null && TieneObjetosSuficientes())
-            {
-                // El jugador ha cumplido con la condición, se puede otorgar un objeto
-                OtorgarRecompensa();
-            }
-            else
-            {
-                UnityEngine.Debug.Log("No tienes todos los juguetes necesarios.");
-            }
+            inventarioJugador.LimpiarInventario();
+            inventarioJugador.AgregarObjeto("piezaRecompensa");
+            CompletarMision();
+        }
+        else
+        {
+            Debug.Log("No tienes todos los juguetes necesarios.");
         }
     }
 
-    // Verifica si el jugador tiene todos los objetos requeridos en el inventario
     private bool TieneObjetosSuficientes()
     {
-        foreach (string objetoRequerido in objetosRequeridos)
+        foreach (string objeto in objetosRequeridos)
         {
-            if (!inventarioJugador.TieneObjeto(objetoRequerido))
+            if (!inventarioJugador.TieneObjeto(objeto))
             {
-                return false; // Si falta alguno de los objetos requeridos, no se puede interactuar
+                return false;
             }
         }
-        return true; // Si tiene todos los objetos requeridos
-    }
-
-    // Otorga la recompensa al jugador
-    private void OtorgarRecompensa()
-    {
-        // Elimina todos los objetos del inventario antes de agregar la recompensa
-        inventarioJugador.LimpiarInventario();
-
-        // Lógica para entregar la recompensa al jugador (agregar una pieza o algo similar)
-        inventarioJugador.AgregarObjeto("piezaRecompensa");
-        UnityEngine.Debug.Log("¡Has recibido una pieza de recompensa!");
-
-        // Aquí ya no desactivamos el NPC, lo dejamos activo
-        // gameObject.SetActive(false); // Comenta o elimina esta línea si no deseas desactivar el NPC
+        return true;
     }
 }
