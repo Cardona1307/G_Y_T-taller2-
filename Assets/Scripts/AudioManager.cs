@@ -24,6 +24,14 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void Update()
+    {
+        // Reproducir un sonido específico al presionar F
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            PlaySoundEffect(2); // Cambia "0" por el índice del efecto deseado
+        }
+    }
 
     // Método para reproducir música
     public void PlayMusic(int index)
