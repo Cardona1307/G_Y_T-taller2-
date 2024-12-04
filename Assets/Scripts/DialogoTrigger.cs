@@ -3,19 +3,21 @@ using UnityEngine;
 public class DialogoTrigger : MonoBehaviour
 {
     [TextArea(3, 10)]
-    public string[] dialogoTexto;
-    public string[] nombresDePersonajes;
-    public Sprite[] avatares; // Nuevo: Array de avatares para cada línea
-    public DialogoManager dialogoManager;
+    public string[] dialogoTexto; // Texto de los diálogos
+    public string[] nombresDePersonajes; // Nombres de los personajes
+    public Sprite[] avatares; // Avatares correspondientes a los diálogos
+    public DialogoManager dialogoManager; // Referencia al DialogoManager
 
     private bool jugadorEnRango;
 
     void Update()
     {
+        // Si el jugador está en rango y presiona "E"
         if (jugadorEnRango && Input.GetKeyDown(KeyCode.E))
         {
-            if (dialogoManager != null && !dialogoManager.DialogoCompletado)
+            if (dialogoManager != null)
             {
+                // Solo inicia el diálogo si el panel no está activo
                 if (!dialogoManager.panelDialogo.activeSelf)
                 {
                     dialogoManager.IniciarDialogo(dialogoTexto, nombresDePersonajes, avatares);
@@ -23,34 +25,28 @@ public class DialogoTrigger : MonoBehaviour
             }
             else
             {
-                Debug.Log("El diálogo ya fue completado y no puede activarse nuevamente.");
+                Debug.LogError("DialogoManager no asignado en el Inspector.");
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !jugadorEnRango)
+        // Verifica si el jugador entra en el rango
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Jugador activó el diálogo por primera vez.");
             jugadorEnRango = true;
-            if (dialogoManager != null)
-            {
-                dialogoManager.IniciarDialogo(dialogoTexto, nombresDePersonajes, avatares);
-            }
-            else
-            {
-                Debug.LogError("DialogoManager no está asignado en el Inspector.");
-            }
-            gameObject.SetActive(false);
+            Debug.Log("Jugador en rango para iniciar diálogo.");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        // Verifica si el jugador sale del rango
         if (other.CompareTag("Player"))
         {
             jugadorEnRango = false;
+            Debug.Log("Jugador salió del rango de diálogo.");
         }
     }
 }

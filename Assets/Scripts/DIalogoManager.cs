@@ -1,60 +1,46 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogoManager : MonoBehaviour
 {
-    public TMP_Text dialogoTexto; // Cambiado a TextMeshPro
-    public Image avatarImagen; // Imagen del personaje que cambia con cada línea
-    public TMP_Text nombrePersonaje; // Cambiado a TextMeshPro
-    public GameObject panelDialogo; // Panel del diálogo
-    public GameObject continueKeyPanel; // Panel para mostrar la tecla "Continuar"
+    public TMP_Text dialogoTexto;
+    public Image avatarImagen;
+    public TMP_Text nombrePersonaje;
+    public GameObject panelDialogo;
+    public GameObject continueKeyPanel; // Para mostrar la tecla de continuar
 
-    private bool dialogoActivo = false;
-    private bool dialogoCompletado = false; // Estado del diálogo
-    private string[] lineasDeDialogo; // Líneas de texto
-    private string[] nombresPersonajes; // Nombres de los personajes
-    private Sprite[] avatares; // Avatares correspondientes a las líneas
+    private string[] lineasDeDialogo;
+    private string[] nombresPersonajes;
+    private Sprite[] avatares;
     private int indiceActual = 0;
 
-    // Propiedad para acceder al estado del diálogo
-    public bool DialogoCompletado
+    // Método para iniciar el diálogo
+    public void IniciarDialogo(string[] nuevasLineas, string[] nombres, Sprite[] nuevosAvatares)
     {
-        get { return dialogoCompletado; }
+        lineasDeDialogo = nuevasLineas;
+        nombresPersonajes = nombres;
+        avatares = nuevosAvatares;
+        indiceActual = 0;
+        panelDialogo.SetActive(true);
+        continueKeyPanel.SetActive(true);
+        MostrarSiguienteLinea();
     }
 
     void Update()
     {
-        // Detecta la tecla "F" para avanzar en el diálogo
-        if (dialogoActivo && Input.GetKeyDown(KeyCode.F))
+        if (panelDialogo.activeSelf && Input.GetKeyDown(KeyCode.F)) // Tecla F para avanzar
         {
             MostrarSiguienteLinea();
         }
     }
 
-    // Método para iniciar el diálogo, acepta texto, nombres y avatares
-    public void IniciarDialogo(string[] nuevasLineas, string[] nombres, Sprite[] nuevosAvatares)
-    {
-        lineasDeDialogo = nuevasLineas;
-        nombresPersonajes = nombres;
-        avatares = nuevosAvatares; // Asigna los avatares
-        indiceActual = 0;
-        dialogoActivo = true;
-        dialogoCompletado = false; // Reinicia el estado
-        panelDialogo.SetActive(true); // Activa el panel del diálogo
-        continueKeyPanel.SetActive(true); // Asegura que el panel de la tecla de continuar se activa
-        MostrarSiguienteLinea();
-    }
-
-    // Muestra la siguiente línea del diálogo
-    public void MostrarSiguienteLinea()
+    void MostrarSiguienteLinea()
     {
         if (indiceActual < lineasDeDialogo.Length)
         {
             dialogoTexto.text = lineasDeDialogo[indiceActual];
             nombrePersonaje.text = nombresPersonajes[indiceActual];
-
-            // Cambia la imagen del avatar según la línea
             if (indiceActual < avatares.Length && avatares[indiceActual] != null)
             {
                 avatarImagen.sprite = avatares[indiceActual];
@@ -62,10 +48,9 @@ public class DialogoManager : MonoBehaviour
             }
             else
             {
-                avatarImagen.enabled = false; // Oculta la imagen si no hay avatar
+                avatarImagen.enabled = false;
             }
-
-            indiceActual++; // Aumenta el índice para la siguiente línea
+            indiceActual++;
         }
         else
         {
@@ -73,12 +58,9 @@ public class DialogoManager : MonoBehaviour
         }
     }
 
-    // Termina el diálogo y oculta el panel
-    public void TerminarDialogo()
+    void TerminarDialogo()
     {
-        dialogoActivo = false;
-        dialogoCompletado = true; // Marca el diálogo como completado
-        panelDialogo.SetActive(false); // Desactiva el panel del diálogo
-        continueKeyPanel.SetActive(false); // Oculta el panel de la tecla
+        panelDialogo.SetActive(false);
+        continueKeyPanel.SetActive(false);
     }
 }
