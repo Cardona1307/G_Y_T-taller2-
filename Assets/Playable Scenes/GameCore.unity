@@ -605,6 +605,90 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.042448737, y: 0.086928286, z: 0.09473766}
   m_Center: {x: -0.00000094365475, y: 0.022239767, z: 0.047368813}
+--- !u!1 &70804962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 754c9eee1057f10418e5b81ef80b42c8, type: 3}
+  m_PrefabInstance: {fileID: 1388019851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &70804965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70804962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd78b1fd71e9cf8408aa3fb9d6ed627b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogoTexto:
+  - "\xBFQuienes son? \xBFQui\xE9n los dej\xF3 entrar? Estoy muy ocupado para atenderlos,
+    deben tomar un turno con la secretaria en la recepci\xF3n"
+  - No hay secretaria
+  - "Tampoco hay recepci\xF3n"
+  - "S\xF3lo ser\xE1 un segundo, Es para ayudar a mi amigo, ver\xE1s, le hacen falta
+    algunas partes."
+  - "\xBFSabes cuantas tareas puedo realizar en un segundo?"
+  - "Con la pantalla de la terminal apagada dir\xEDa que pocas"
+  - "No digas tonter\xEDas, seguramente te env\xEDo Bill para distraerme y quedarse
+    con el premio de empleado robot del mes"
+  - "el monitor se ve algo oscuro porque la luz est\xE1 apagada, si logras restablecer
+    el fluido el\xE9ctrico y las luces se encienden otra vez, veras que se ve claro
+    como el agua."
+  - "Si logramos que las luces se enciendan podr\xE1s sacar algo de tiempo para ayudarnos"
+  - "Existen probabilidades alentadoras de 17.5% de que eso pase, el panel est\xE1
+    en aquella esquina, tal vez encuentren all\xED el problema."
+  nombresDePersonajes:
+  - Robot Oficinista
+  - Raton
+  - NK0-086
+  - Raton
+  - Robot Oficinista
+  - Raton
+  - Robot Oficinista
+  - Robot Oficinista
+  - Raton
+  - Robot Oficinista
+  avatares:
+  - {fileID: 21300000, guid: e3793f40f48525e41bae8deb4d6f16ec, type: 3}
+  - {fileID: 21300000, guid: 15806f73ad650ee40ab99b6c225de3cb, type: 3}
+  - {fileID: 21300000, guid: 2fe903039d06d84458a594eb91872065, type: 3}
+  - {fileID: 21300000, guid: 15806f73ad650ee40ab99b6c225de3cb, type: 3}
+  - {fileID: 21300000, guid: e3793f40f48525e41bae8deb4d6f16ec, type: 3}
+  - {fileID: 21300000, guid: 15806f73ad650ee40ab99b6c225de3cb, type: 3}
+  - {fileID: 21300000, guid: e3793f40f48525e41bae8deb4d6f16ec, type: 3}
+  - {fileID: 21300000, guid: e3793f40f48525e41bae8deb4d6f16ec, type: 3}
+  - {fileID: 21300000, guid: 15806f73ad650ee40ab99b6c225de3cb, type: 3}
+  - {fileID: 21300000, guid: e3793f40f48525e41bae8deb4d6f16ec, type: 3}
+  dialogoMisionNoCompletada: []
+  nombresMisionNoCompletada: []
+  avataresMisionNoCompletada: []
+  dialogoMisionCompletada: []
+  nombresMisionCompletada: []
+  avataresMisionCompletada: []
+  uiManager: {fileID: 913749681}
+--- !u!65 &70804966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70804962}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.85667515, y: 1.0117525, z: 2.0837638}
+  m_Center: {x: 0.2332347, y: 0.005875964, z: -0.065048516}
 --- !u!1 &75195316
 GameObject:
   m_ObjectHideFlags: 0
@@ -12474,7 +12558,7 @@ Transform:
   m_GameObject: {fileID: 1299496568}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -48.689, y: 11.44, z: 85.986}
+  m_LocalPosition: {x: -67.629, y: -0.80000114, z: 191.44601}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14277,7 +14361,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 754c9eee1057f10418e5b81ef80b42c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 70804965}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 754c9eee1057f10418e5b81ef80b42c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 70804966}
   m_SourcePrefab: {fileID: 100100000, guid: 754c9eee1057f10418e5b81ef80b42c8, type: 3}
 --- !u!65 &1388324233
 BoxCollider:
@@ -23566,8 +23656,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -23602,7 +23692,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -182.3242, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -25122,7 +25212,7 @@ Transform:
   m_GameObject: {fileID: 1915337084}
   serializedVersion: 2
   m_LocalRotation: {x: 0.10950041, y: -0.6985769, z: 0.10950041, w: 0.6985769}
-  m_LocalPosition: {x: -42.76, y: 15.1, z: 85.64}
+  m_LocalPosition: {x: -61.7, y: 2.86, z: 191.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26329,8 +26419,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
